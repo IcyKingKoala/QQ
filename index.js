@@ -45,12 +45,12 @@ app.get('/health', (req, res) => {
 });
 
 function getDonationEmoji(amount) {
-    if (amount >= 10000000) return '<:starfall:1492452981608681632>';
-    if (amount >= 1000000) return '<:smite:1492453496157638799>';
+    if (amount >= 10000000) return '<:starfall:1466700883097157755>>';
+    if (amount >= 1000000) return '<:smite:1466700843293216914>';
     if (amount >= 100000) return '<:nuke:1492451710323392644>';
-    if (amount >= 10000) return '<:robux:1492451682783592458>';
-    if (amount >= 1000) return '<:robux:1492451682783592458>';
-    return '<:robux:1492451682783592458>';
+    if (amount >= 10000) return '<:robuxwafflesemoji:1492835946322984960>';
+    if (amount >= 1000) return '<:robuxwafflesemoji:1492835946322984960>';
+    return '<:robuxwafflesemoji:1492835946322984960>';
 }
 
 function formatCommas(number) {
