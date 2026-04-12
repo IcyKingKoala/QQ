@@ -45,9 +45,9 @@ app.get('/health', (req, res) => {
 });
 
 function getDonationEmoji(amount) {
-    if (amount >= 10000000) return '<:starfall:1466700883097157755>>';
+    if (amount >= 10000000) return '<:starfall:1466700883097157755>';
     if (amount >= 1000000) return '<:smite:1466700843293216914>';
-    if (amount >= 100000) return '<:nuke:1492451710323392644>';
+    if (amount >= 100000) return '<:nuke:1466700817275949067>';
     if (amount >= 10000) return '<:robuxwafflesemoji:1492835946322984960>';
     if (amount >= 1000) return '<:robuxwafflesemoji:1492835946322984960>';
     return '<:robuxwafflesemoji:1492835946322984960>';
@@ -254,7 +254,7 @@ app.post('/donation', async (req, res) => {
 
         const _channel = await client.channels.fetch('1466702475523395615');
         await _channel.send({
-            content: `${getDonationEmoji(Amount)} \`@${_donatorname}\` donated **<:robux:1492451682783592458>${formatCommas(Amount)} Robux** to \`@${_raisername}\``,
+            content: `${getDonationEmoji(Amount)} \`@${_donatorname}\` donated **<:robuxwafflesemoji:1492835946322984960>${formatCommas(Amount)} Robux** to \`@${_raisername}\``,
             embeds: [{
                 color: parseInt(getColor(Amount).replace('#', ''), 16),
                 image: { url: "attachment://donation.png" },
