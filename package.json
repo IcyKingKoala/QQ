@@ -1,0 +1,16 @@
+{
+  "type": "commonjs",
+  "name": "discord-donation-bot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "discord.js": "^14.0.0",
+    "axios": "^1.0.0",
+    "canvas": "^2.11.2",
+    "express": "^4.18.0",
+    "cors": "^2.8.0"
+  }
+}
