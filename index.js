@@ -45,12 +45,12 @@ app.get('/health', (req, res) => {
 });
 
 function getDonationEmoji(amount) {
-    if (amount >= 10000000) return '<:starfall:1466700883097157755>';
-    if (amount >= 1000000) return '<:smite:1466700843293216914>';
-    if (amount >= 100000) return '<:nuke:1466700817275949067>';
-    if (amount >= 10000) return '<:robuxwafflesemoji:1492835946322984960>';
-    if (amount >= 1000) return '<:robuxwafflesemoji:1492835946322984960>';
-    return '<:robuxwafflesemoji:1492835946322984960>';
+    if (amount >= 10000000) return '<:starfall:1492452981608681632>';
+    if (amount >= 1000000) return '<:smite:1492453496157638799>';
+    if (amount >= 100000) return '<:nuke:1492451710323392644>';
+    if (amount >= 10000) return '<:robux:1492451682783592458>';
+    if (amount >= 1000) return '<:robux:1492451682783592458>';
+    return '<:robux:1492451682783592458>';
 }
 
 function formatCommas(number) {
@@ -254,7 +254,7 @@ app.post('/donation', async (req, res) => {
 
         const _channel = await client.channels.fetch('1501708292718854174');
         await _channel.send({
-            content: `${getDonationEmoji(Amount)} \`@${_donatorname}\` donated **<:robuxwafflesemoji:1492835946322984960>${formatCommas(Amount)} Robux** to \`@${_raisername}\``,
+            content: `${getDonationEmoji(Amount)} \`@${_donatorname}\` donated **<:robux:1492451682783592458>${formatCommas(Amount)} Robux** to \`@${_raisername}\``,
             embeds: [{
                 color: parseInt(getColor(Amount).replace('#', ''), 16),
                 image: { url: "attachment://donation.png" },
@@ -274,16 +274,21 @@ client.on('ready', () => {
     console.log(`logged in ${client.user.tag}`);
 });
 
-const _keepaliveurl = process.env.RENDER_URL || `http://localhost:${10000}/health`
-setInterval(async () => {
-    try {
-        await axios.get(_keepaliveurl)
-    } catch (_e) {}
-}, 14 * 60 * 1000)
-
 const PORT = 10000;
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`server running on port ${PORT}`);
 });
 
 client.login(process.env.TOKEN);
+
+const _keepalive = () => {
+    setInterval(async () => {
+        try {
+            await axios.get('https://qq-fxek.onrender.com/health');
+            console.log('keep alive ping sent');
+        } catch (error) {
+            console.log('keep alive failed:', error.message);
+        }
+    }, 14 * 60 * 1000);
+};
+_keepalive();
