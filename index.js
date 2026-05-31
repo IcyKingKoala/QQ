@@ -8,7 +8,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-registerFont('./Gotham-Bold.ttf', { 
+registerFont(path.join(__dirname, 'Gotham-Bold.ttf'), { 
   family: 'Gotham', 
   weight: 'bold',
   style: 'normal'
