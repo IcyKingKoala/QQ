@@ -252,7 +252,7 @@ app.post('/donation', async (req, res) => {
 
         const _attachment = new AttachmentBuilder(_imagebuffer, { name: 'donation.png' });
 
-        const _channel = await client.channels.fetch('1466702475523395615');
+        const _channel = await client.channels.fetch('1501708292718854174');
         await _channel.send({
             content: `${getDonationEmoji(Amount)} \`@${_donatorname}\` donated **<:robuxwafflesemoji:1492835946322984960>${formatCommas(Amount)} Robux** to \`@${_raisername}\``,
             embeds: [{
