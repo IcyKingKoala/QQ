@@ -266,6 +266,7 @@ app.post('/donation', async (req, res) => {
 
         res.json({ success: true });
     } catch (error) {
+        console.log('FULL ERROR:', error);
         res.status(500).json({ success: false, error: error.message });
     }
 });
