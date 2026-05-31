@@ -170,44 +170,44 @@ async function createDonationImage(donatorAvatar, raiserAvatar, donatorName, rai
         ctx.lineWidth = 5 * _scale;
 
         try {
-            const _robuxurl = 'https://cdn.discordapp.com/emojis/1492725465931186246.png?size=512';
-            const _robuximg = await loadImage(_robuxurl);
-            const _text = `${formatCommas(amount)}`;
-            const _textwidth = ctx.measureText(_text).width;
-            const _imgsize = 44 * _scale;
-            const _xpos = 365 * _scale - (_textwidth / 2) - _imgsize - 1 - 5 * _scale;
-            const _ypos = 38 * _scale;
-
-            const _tempcanvas = createCanvas(_imgsize, _imgsize);
-            const _tempctx = _tempcanvas.getContext('2d');
-            _tempctx.drawImage(_robuximg, 0, 0, _imgsize, _imgsize);
-            _tempctx.globalCompositeOperation = 'source-in';
-            _tempctx.fillStyle = _color + 'FF';
-            _tempctx.fillRect(0, 0, _imgsize, _imgsize);
-
-            const _strokecanvas = createCanvas(_imgsize, _imgsize);
-            const _sctx = _strokecanvas.getContext('2d');
-            _sctx.drawImage(_robuximg, 0, 0, _imgsize, _imgsize);
-            _sctx.globalCompositeOperation = 'source-in';
-            _sctx.fillStyle = '#000000';
-            _sctx.fillRect(0, 0, _imgsize, _imgsize);
-
-            for (let _ox = -6; _ox <= 6; _ox++) {
-                for (let _oy = -6; _oy <= 6; _oy++) {
-                    if (Math.sqrt(_ox * _ox + _oy * _oy) <= 6) {
-                        ctx.drawImage(_strokecanvas, _xpos + _ox, _ypos + _oy);
-                    }
-                }
-            }
-            ctx.drawImage(_tempcanvas, _xpos, _ypos);
-
-            ctx.strokeText(_text, 365 * _scale, 72 * _scale);
-            ctx.fillText(_text, 365 * _scale, 72 * _scale);
-
+            const _robuxurl = 'https://i.imgur.com/placeholder.png';
+            throw new Error('skip to fallback');
         } catch (robuxError) {
-            const _amounttext = `⏣ ${formatCommas(amount)}`;
-            ctx.strokeText(_amounttext, 350 * _scale, 72 * _scale);
-            ctx.fillText(_amounttext, 350 * _scale, 72 * _scale);
+            const _text = `${formatCommas(amount)}`;
+            const _imgsize = 44 * _scale;
+            const _textwidth = ctx.measureText(_text).width;
+
+            ctx.font = `bold ${44 * _scale}px Gotham`;
+            ctx.fillStyle = _color;
+            ctx.strokeStyle = '#000000';
+            ctx.lineWidth = 5 * _scale;
+
+            const _circlex = 365 * _scale - (_textwidth / 2) - _imgsize * 0.6;
+            const _circley = 72 * _scale - _imgsize * 0.6;
+            const _circler = _imgsize * 0.45;
+
+            ctx.beginPath();
+            ctx.arc(_circlex, _circley, _circler + 3 * _scale, 0, Math.PI * 2);
+            ctx.fillStyle = '#000000';
+            ctx.fill();
+
+            ctx.beginPath();
+            ctx.arc(_circlex, _circley, _circler, 0, Math.PI * 2);
+            ctx.fillStyle = _color;
+            ctx.fill();
+
+            ctx.fillStyle = '#000000';
+            ctx.font = `bold ${_circler * 1.1}px Gotham`;
+            ctx.textAlign = 'center';
+            ctx.fillText('R$', _circlex, _circley + _circler * 0.35);
+
+            ctx.font = `bold ${44 * _scale}px Gotham`;
+            ctx.fillStyle = _color;
+            ctx.strokeStyle = '#000000';
+            ctx.lineWidth = 5 * _scale;
+            ctx.textAlign = 'center';
+            ctx.strokeText(_text, 365 * _scale + _imgsize * 0.2, 72 * _scale);
+            ctx.fillText(_text, 365 * _scale + _imgsize * 0.2, 72 * _scale);
         }
 
         ctx.fillStyle = '#FFFFFF';
