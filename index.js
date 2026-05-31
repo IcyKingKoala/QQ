@@ -68,11 +68,11 @@ function getColor(robux) {
 
 async function getRobloxThumbnail(userId) {
     try {
-        console.log(`🔄 Fetching thumbnail for user: ${userId}`);
+        console.log(`Fetching thumbnail for user: ${userId}`);
         const response = await axios.get(`https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${userId}&size=150x150&format=Png&isCircular=false`);
         if (response.data.data && response.data.data[0] && response.data.data[0].imageUrl) {
             const avatarUrl = response.data.data[0].imageUrl;
-            console.log(`✅ Got avatar URL: ${avatarUrl}`);
+            console.log(`Got avatar URL: ${avatarUrl}`);
             return avatarUrl;
         } else {
             console.log(`No avatar found for user ${userId}`);
@@ -86,7 +86,7 @@ async function getRobloxThumbnail(userId) {
 }
 
 async function createDonationImage(donatorAvatar, raiserAvatar, donatorName, raiserName, amount) {
-    console.log(`🔄 Creating donation image with avatars: ${donatorAvatar}, ${raiserAvatar}`);
+    console.log(`Creating donation image with avatars: ${donatorAvatar}, ${raiserAvatar}`);
 
     try {
         const _scale = 1872 / 700;
@@ -252,7 +252,7 @@ app.post('/donation', async (req, res) => {
 
         const _attachment = new AttachmentBuilder(_imagebuffer, { name: 'donation.png' });
 
-        const _channel = await client.channels.fetch('1501708292718854174');
+        const _channel = await client.channels.fetch('1455554050111045868');
         await _channel.send({
             content: `${getDonationEmoji(Amount)} \`@${_donatorname}\` donated **<:robux:1492451682783592458>${formatCommas(Amount)} Robux** to \`@${_raisername}\``,
             embeds: [{
