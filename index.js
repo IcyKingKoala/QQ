@@ -274,6 +274,13 @@ client.on('ready', () => {
     console.log(`logged in ${client.user.tag}`);
 });
 
+const _keepaliveurl = process.env.RENDER_URL || `http://localhost:${10000}/health`
+setInterval(async () => {
+    try {
+        await axios.get(_keepaliveurl)
+    } catch (_e) {}
+}, 14 * 60 * 1000)
+
 const PORT = 10000;
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`server running on port ${PORT}`);
