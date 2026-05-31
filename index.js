@@ -37,10 +37,10 @@ app.get('/health', (req, res) => {
 });
 
 function getDonationEmoji(amount) {
-    if (amount >= 10000000) return '<:starfall:1492452981608681632>';
-    if (amount >= 1000000) return '<:smite:1492453496157638799>';
-    if (amount >= 100000) return '<:nuke:1492451710323392644>';
-    return '<:robux:1492451682783592458>';
+    if (amount >= 10000000) return '<:starfall:1510588807878021251>';
+    if (amount >= 1000000) return '<:smite:1510588705881194658>';
+    if (amount >= 100000) return '<:nuke:1510588391962443868>';
+    return '<:robux:1510588282717868062>';
 }
 
 function formatCommas(number) {
@@ -233,7 +233,7 @@ app.post('/donation', async (req, res) => {
         const _attachment = new AttachmentBuilder(_imagebuffer, { name: 'donation.png' });
         const _channel = await client.channels.fetch('1501708292718854174');
         await _channel.send({
-            content: `${getDonationEmoji(Amount)} \`@${_donatorname}\` donated **<:robux:1492451682783592458>${formatCommas(Amount)} Robux** to \`@${_raisername}\``,
+            content: `${getDonationEmoji(Amount)} \`@${_donatorname}\` donated **<:robux:1510588282717868062>${formatCommas(Amount)} Robux** to \`@${_raisername}\``,
             embeds: [{
                 color: parseInt(getColor(Amount).replace('#', ''), 16),
                 image: { url: 'attachment://donation.png' },
